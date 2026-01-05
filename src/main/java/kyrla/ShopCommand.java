@@ -45,6 +45,13 @@ public class ShopCommand implements CommandExecutor {
             return true;
         }
 
+        if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
+            if (!player.hasPermission("shop.admin")) return true; 
+            ShopPlugin.getInstance().reloadConfig(); 
+            player.sendMessage("§aКонфиг перезагружен!");
+            return true;
+         }
+
         Player player = (Player) sender;
 
 
@@ -63,6 +70,8 @@ public class ShopCommand implements CommandExecutor {
         gui.setItem(1, createGuiItem(Material.GOLD_INGOT, "&6Золотой слиток", goldBuy, goldSell));
 
         player.openInventory(gui);
+
+        
 
         return true;
     }
